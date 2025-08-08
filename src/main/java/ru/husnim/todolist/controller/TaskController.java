@@ -1,9 +1,12 @@
 package ru.husnim.todolist.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,21 +47,23 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<Task> createTask(@Valid @RequestBody TaskDTO taskDTO) {
         logger.info("Создание задачи с заголовком: {}", taskDTO.getTitle());
-        return service.createTask(taskDTO);
+        Task createdTask = service.createTask(taskDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
     }
 
-    @PutMapping
-    public Task updateTask(@RequestBody Long id, TaskDTO taskDTO) {
+    @PutMapping("/{id}")
+    public Task updateTask(@PathVariable Long id,@Valid TaskDTO taskDTO) {
         logger.info("Изменение задачи с заголовком: {}", taskDTO.getTitle());
         return service.updateTask(id, taskDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         logger.info("Удаление задачи с id: {}", id);
         service.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

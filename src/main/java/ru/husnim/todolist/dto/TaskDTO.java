@@ -1,10 +1,12 @@
 package ru.husnim.todolist.dto;
 
+import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class TaskDTO {
 
     @NotNull
+    @Size(min = 1, message = "Задача не может быть пустой")
     private String title;
     private String description;
     private boolean completed;

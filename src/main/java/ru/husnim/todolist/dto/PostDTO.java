@@ -1,10 +1,12 @@
 package ru.husnim.todolist.dto;
 
+import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class PostDTO {
 
     @NotNull
+    @Size(min = 1, message = "Запись не может быть пустой")
     private String title;
     private String content;
 

@@ -22,9 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ru.husnim.todolist.controller.PostController;
 import ru.husnim.todolist.dto.PostDTO;
-import ru.husnim.todolist.dto.TaskDTO;
 import ru.husnim.todolist.model.Post;
-import ru.husnim.todolist.model.Task;
 import ru.husnim.todolist.service.PostService;
 
 public class PostControllerTest {
@@ -72,7 +70,7 @@ public class PostControllerTest {
         mockMvc.perform(post("/posts")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"New Post\",\"content\":\"New Content\"}"))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.title").value("New Post"));
     }
 
@@ -93,7 +91,7 @@ public class PostControllerTest {
         doNothing().when(service).deletePost(1L);
 
         mockMvc.perform(delete("/posts/1"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
     }
 
 }

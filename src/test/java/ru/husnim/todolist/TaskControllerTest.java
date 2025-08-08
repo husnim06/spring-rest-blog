@@ -68,7 +68,7 @@ public class TaskControllerTest {
         mockMvc.perform(post("/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"New Task\",\"description\":\"New Description\",\"completed\":false}"))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.title").value("New Task"));
     }
 
@@ -89,7 +89,7 @@ public class TaskControllerTest {
         doNothing().when(service).deleteTask(1L);
 
         mockMvc.perform(delete("/tasks/1"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
     }
     
 }

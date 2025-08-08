@@ -1,9 +1,13 @@
 package ru.husnim.todolist.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,21 +48,23 @@ public class PostController {
     }
 
     @PostMapping
-    public Post createPost(@RequestBody PostDTO postDTO) {
+    public ResponseEntity<Post> createPost(@Valid @RequestBody PostDTO postDTO) {
         logger.info("Создание записи с заголовком: {}", postDTO.getTitle());
-        return service.createPost(postDTO);
+        Post createdPost = service.createPost(postDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 
-    @PutMapping
-    public Post updatePost(@RequestBody Long id, PostDTO postDTO) {
+    @PutMapping("/{id}")
+    public Post updatePost(@PathVariable Long id, @Valid PostDTO postDTO) {
         logger.info("Изменение записи с заголовком: {}", postDTO.getTitle());
         return service.updatePost(id, postDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         logger.info("Удаление записи с id: {}", id);
         service.deletePost(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
