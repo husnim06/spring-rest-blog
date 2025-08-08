@@ -83,7 +83,7 @@ public class TaskControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.title").value("Task 1"));
     }
-
+    
     @Test
     public void testDeleteTask() throws Exception {
         doNothing().when(service).deleteTask(1L);

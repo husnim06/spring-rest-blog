@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.husnim.todolist.dto.TaskDTO;
 import ru.husnim.todolist.model.Task;
@@ -45,6 +46,12 @@ public class TaskController {
         logger.info("Получение задачи по заголовку: {}", title);
         return service.getTaskByTitle(title);
     }
+    
+    @GetMapping("/filter")
+    public List<Task> getTaskByTitle(@RequestParam boolean completed) {
+        logger.info("Получение задачи со статусом: {}", completed);
+        return service.getTasksByStatus(completed);
+    }
 
     @PostMapping
     public ResponseEntity<Task> createTask(@Valid @RequestBody TaskDTO taskDTO) {
@@ -54,7 +61,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id,@Valid TaskDTO taskDTO) {
+    public Task updateTask(@PathVariable Long id,@Valid @RequestBody TaskDTO taskDTO) {
         logger.info("Изменение задачи с заголовком: {}", taskDTO.getTitle());
         return service.updateTask(id, taskDTO);
     }

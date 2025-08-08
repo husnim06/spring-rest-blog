@@ -41,6 +41,16 @@ public class TaskService {
             throw e;
         }
     }
+    
+    public List<Task> getTasksByStatus(boolean completed) {
+        try {
+            logger.debug("Получение задачи с статусом из репозитория: {}", completed);
+            return repository.findByCompleted(completed);
+        } catch (Exception e){
+            logger.error("Ошибка при получении задачи со статусом {}: {}", completed, e.getMessage());
+            throw e;
+        }
+    }
 
     public Task createTask(TaskDTO taskDTO) {
         logger.debug("Создание новой задачи с заголовком: {}", taskDTO.getTitle());
