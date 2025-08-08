@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.husnim</groupId>
-    <artifactId>todolist</artifactId>
+    <artifactId>sring-rest-blog</artifactId>
     <version>1.0</version>
-    <name>todolist</name>
+    <name>sring-rest-blog</name>
     <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>

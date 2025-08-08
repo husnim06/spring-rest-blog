@@ -1,4 +1,4 @@
-package ru.husnim.todolist.model;
+package ru.husnim.spring_rest_blog.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,10 +1,10 @@
-package ru.husnim.todolist;
+package ru.husnim.spring_rest_blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TodolistApplicationTests {
+class SpringRestBlogApplicationTests {
 
 	@Test
 	void contextLoads() {

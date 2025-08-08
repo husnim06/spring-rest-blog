@@ -1,4 +1,4 @@
-package ru.husnim.todolist.controller;
+package ru.husnim.spring_rest_blog.controller;
 
 import jakarta.validation.Valid;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.husnim.todolist.dto.PostDTO;
-import ru.husnim.todolist.model.Post;
-import ru.husnim.todolist.service.PostService;
+import ru.husnim.spring_rest_blog.dto.PostDTO;
+import ru.husnim.spring_rest_blog.model.Post;
+import ru.husnim.spring_rest_blog.service.PostService;
 
 @RestController
 @RequestMapping("/posts")

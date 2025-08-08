@@ -1,4 +1,4 @@
-package ru.husnim.todolist;
+package ru.husnim.spring_rest_blog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ru.husnim.todolist.controller.PostController;
-import ru.husnim.todolist.dto.PostDTO;
-import ru.husnim.todolist.model.Post;
-import ru.husnim.todolist.service.PostService;
+import ru.husnim.spring_rest_blog.controller.PostController;
+import ru.husnim.spring_rest_blog.dto.PostDTO;
+import ru.husnim.spring_rest_blog.model.Post;
+import ru.husnim.spring_rest_blog.service.PostService;
 
 public class PostControllerTest {
 

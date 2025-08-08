@@ -1,4 +1,4 @@
-package ru.husnim.todolist.dto;
+package ru.husnim.spring_rest_blog.dto;
 
 import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;

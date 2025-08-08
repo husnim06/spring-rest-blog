@@ -1,13 +1,13 @@
-package ru.husnim.todolist.service;
+package ru.husnim.spring_rest_blog.service;
 
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.husnim.todolist.dto.PostDTO;
-import ru.husnim.todolist.model.Post;
-import ru.husnim.todolist.repository.PostRepository;
+import ru.husnim.spring_rest_blog.dto.PostDTO;
+import ru.husnim.spring_rest_blog.model.Post;
+import ru.husnim.spring_rest_blog.repository.PostRepository;
 
 @Service
 public class PostService {

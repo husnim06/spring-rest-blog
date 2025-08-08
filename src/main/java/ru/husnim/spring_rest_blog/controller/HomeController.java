@@ -1,4 +1,4 @@
-package ru.husnim.todolist.controller;
+package ru.husnim.spring_rest_blog.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
