@@ -21,7 +21,7 @@ import ru.husnim.todolist.service.TaskService;
 public class TaskController {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
-    
+
     @Autowired
     private TaskService service;
 
@@ -51,7 +51,7 @@ public class TaskController {
 
     @PutMapping
     public Task updateTask(@RequestBody Long id, TaskDTO taskDTO) {
-        logger.info("Изменение задачис заголовком: {}", taskDTO.getTitle());
+        logger.info("Изменение задачи с заголовком: {}", taskDTO.getTitle());
         return service.updateTask(id, taskDTO);
     }
 

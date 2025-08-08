@@ -28,24 +28,24 @@ public class TaskControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private TaskService taskService;
+    private TaskService service;
 
     @InjectMocks
-    private TaskController taskController;
+    private TaskController controller;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(taskController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
     public void testGetAllTasks() throws Exception {
-        Task task1 = new Task(1L, "Task 1", "Description 1", false);
-        Task task2 = new Task(2L, "Task 2", "Description 2", true);
+        Task task1 = new Task("Task 1", "Description 1", false);
+        Task task2 = new Task("Task 2", "Description 2", true);
         List<Task> tasks = Arrays.asList(task1, task2);
 
-        when(taskService.getAllTasks()).thenReturn(tasks);
+        when(service.getAllTasks()).thenReturn(tasks);
 
         mockMvc.perform(get("/tasks"))
                 .andExpect(status().isOk())
@@ -61,9 +61,9 @@ public class TaskControllerTest {
         taskDTO.setDescription("New Description");
         taskDTO.setCompleted(false);
 
-        Task createdTask = new Task(1L, "New Task", "New Description", false);
+        Task createdTask = new Task("New Task", "New Description", false);
 
-        when(taskService.createTask(any(TaskDTO.class))).thenReturn(createdTask);
+        when(service.createTask(any(TaskDTO.class))).thenReturn(createdTask);
 
         mockMvc.perform(post("/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -74,9 +74,9 @@ public class TaskControllerTest {
 
     @Test
     public void testGetTaskById() throws Exception {
-        Task task = new Task(1L, "Task 1", "Description 1", false);
+        Task task = new Task("Task 1", "Description 1", false);
 
-        when(taskService.getTaskById(1L)).thenReturn(task);
+        when(service.getTaskById(1L)).thenReturn(task);
 
         mockMvc.perform(get("/tasks/1"))
                 .andExpect(status().isOk())
@@ -86,9 +86,10 @@ public class TaskControllerTest {
 
     @Test
     public void testDeleteTask() throws Exception {
-        doNothing().when(taskService).deleteTask(1L);
+        doNothing().when(service).deleteTask(1L);
 
         mockMvc.perform(delete("/tasks/1"))
                 .andExpect(status().isOk());
     }
+    
 }

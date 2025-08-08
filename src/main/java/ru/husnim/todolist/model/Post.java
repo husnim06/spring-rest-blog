@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
-public class Task {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,16 +16,14 @@ public class Task {
     @NotNull
     @Column(unique = true)
     private String title;
-    private String description;
-    private boolean completed;
+    private String content;
 
-    public Task(String title, String description, boolean completed) {
+    public Post(String title, String content) {
         this.title = title;
-        this.description = description;
-        this.completed = completed;
+        this.content = content;
     }
 
-    public Task() {
+    public Post() {
 
     }
 
@@ -45,20 +43,12 @@ public class Task {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setContent(String content) {
+        this.content = content;
     }
 
 }

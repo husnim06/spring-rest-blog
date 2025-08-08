@@ -13,7 +13,7 @@ import ru.husnim.todolist.repository.TaskRepository;
 public class TaskService {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskService.class);
-    
+
     @Autowired
     private TaskRepository repository;
 
@@ -26,7 +26,7 @@ public class TaskService {
         try {
             logger.debug("Получение задачи с id из репозитория: {}", id);
             return repository.findById(id).orElseThrow(() -> new RuntimeException("Задача не найдена"));
-        } catch(Exception e){
+        } catch (Exception e) {
             logger.error("Ошибка при получении задачи с ID {}: {}", id, e.getMessage());
             throw e;
         }
@@ -36,7 +36,7 @@ public class TaskService {
         try {
             logger.debug("Получение задачи с заголовком из репозитория: {}", title);
             return repository.findByTitle(title).orElseThrow(() -> new RuntimeException("Задача не найдена"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             logger.error("Ошибка при получении задачи с заголовком {}: {}", title, e.getMessage());
             throw e;
         }
@@ -59,8 +59,8 @@ public class TaskService {
             task.setDescription(taskDTO.getDescription());
             task.setCompleted(taskDTO.getCompleted());
             return repository.save(task);
-        } catch(Exception e) {
-            logger.error("Ошибка при получении задачи с заголовком {}: {}", taskDTO.getTitle(), e.getMessage());
+        } catch (Exception e) {
+            logger.error("Ошибка при изменении задачи с заголовком {}: {}", taskDTO.getTitle(), e.getMessage());
             throw e;
         }
     }
