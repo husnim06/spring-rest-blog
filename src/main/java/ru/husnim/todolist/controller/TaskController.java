@@ -1,4 +1,4 @@
-package ru.husnim.spring_rest_blog.controller;
+package ru.husnim.todolist.controller;
 
 import jakarta.validation.Valid;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.husnim.spring_rest_blog.dto.TaskDTO;
-import ru.husnim.spring_rest_blog.model.Task;
-import ru.husnim.spring_rest_blog.service.TaskService;
+import ru.husnim.todolist.dto.TaskDTO;
+import ru.husnim.todolist.model.Task;
+import ru.husnim.todolist.service.TaskService;
 
 @RestController
 @RequestMapping("/tasks")

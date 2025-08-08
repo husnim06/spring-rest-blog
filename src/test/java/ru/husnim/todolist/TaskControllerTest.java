@@ -1,4 +1,4 @@
-package ru.husnim.spring_rest_blog;
+package ru.husnim.todolist;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -14,13 +14,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import ru.husnim.spring_rest_blog.dto.TaskDTO;
-import ru.husnim.spring_rest_blog.model.Task;
-import ru.husnim.spring_rest_blog.service.TaskService;
+import ru.husnim.todolist.dto.TaskDTO;
+import ru.husnim.todolist.model.Task;
+import ru.husnim.todolist.service.TaskService;
 
 import java.util.Arrays;
 import java.util.List;
-import ru.husnim.spring_rest_blog.controller.TaskController;
+import ru.husnim.todolist.controller.TaskController;
 
 public class TaskControllerTest {
 

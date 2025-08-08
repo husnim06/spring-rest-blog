@@ -1,4 +1,4 @@
-package ru.husnim.spring_rest_blog.model;
+package ru.husnim.todolist.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
-public class Post {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,16 @@ public class Post {
     @NotNull
     @Column(unique = true)
     private String title;
-    private String content;
+    private String description;
+    private boolean completed;
 
-    public Post(String title, String content) {
+    public Task(String title, String description, boolean completed) {
         this.title = title;
-        this.content = content;
+        this.description = description;
+        this.completed = completed;
     }
 
-    public Post() {
+    public Task() {
 
     }
 
@@ -43,12 +45,20 @@ public class Post {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
 }

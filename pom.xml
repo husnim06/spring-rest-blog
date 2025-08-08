@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.husnim</groupId>
-    <artifactId>sring-rest-blog</artifactId>
+    <artifactId>todolist</artifactId>
     <version>1.0</version>
-    <name>sring-rest-blog</name>
-    <description>Demo project for Spring Boot</description>
+    <name>todolist</name>
+    <description>Проект, который предоставляет RESTful API для управления задачами. В проекте реализованы модели, репозитории, сервисы и REST контроллеры</description>
     <url/>
     <licenses>
         <license/>

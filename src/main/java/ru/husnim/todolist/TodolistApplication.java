@@ -1,13 +1,13 @@
-package ru.husnim.spring_rest_blog;
+package ru.husnim.todolist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringRestBlogApplication {
+public class TodolistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringRestBlogApplication.class, args);
+		SpringApplication.run(TodolistApplication.class, args);
 	}
 
 }
