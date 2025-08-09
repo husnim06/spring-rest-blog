@@ -52,7 +52,7 @@ public class TaskService {
             throw e;
         }
     }
-    
+
     public List<Task> getTasksByPriority(Priority priority) {
         try {
             logger.debug("Получение задачи с приоритетом из репозитория: {}", priority);
@@ -68,11 +68,11 @@ public class TaskService {
         if (repository.findByTitle(taskDTO.getTitle()).isPresent()) {
             throw new RuntimeException("Задача с таким заголовком уже существует");
         }
-        Task task = new Task();
-        task.setTitle(taskDTO.getTitle());
-        task.setDescription(taskDTO.getDescription());
-        task.setCompleted(taskDTO.getCompleted());
-        task.setPriority(taskDTO.getPriority());
+        Task task = new Task(
+                taskDTO.getTitle(), 
+                taskDTO.getDescription(), 
+                taskDTO.getCompleted(), 
+                taskDTO.getPriority());
         return repository.save(task);
     }
 

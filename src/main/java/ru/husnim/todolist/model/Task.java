@@ -1,13 +1,11 @@
 package ru.husnim.todolist.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 public class Task {
@@ -22,11 +20,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    @Column(unique = true)
-    private String title;
-    
-    private String description;
+    private String title, description;
     private boolean completed;
 
     @Enumerated(EnumType.STRING)

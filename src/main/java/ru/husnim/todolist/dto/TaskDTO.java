@@ -1,15 +1,17 @@
 package ru.husnim.todolist.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.antlr.v4.runtime.misc.NotNull;
 import ru.husnim.todolist.model.Task;
 
 public class TaskDTO {
 
-    @NotNull
-    @Size(min = 1, message = "Задача не может быть пустой")
+    @NotNull(message = "Задача не может быть без заголовка")
+    @Size(min = 1, message = "Задача не может быть без заголовка")
+    @Column(unique = true)
     private String title;
     
     private String description;
