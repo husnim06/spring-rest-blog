@@ -10,5 +10,7 @@ import ru.husnim.todolist.model.Task;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Optional<Task> findByTitle(String title);
+
     List<Task> findByCompleted(boolean completed);
+
 }

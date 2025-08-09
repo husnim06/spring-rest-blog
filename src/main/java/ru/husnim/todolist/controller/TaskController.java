@@ -46,7 +46,7 @@ public class TaskController {
         logger.info("Получение задачи по заголовку: {}", title);
         return service.getTaskByTitle(title);
     }
-    
+
     @GetMapping("/filter")
     public List<Task> getTaskByTitle(@RequestParam boolean completed) {
         logger.info("Получение задачи со статусом: {}", completed);
@@ -61,7 +61,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id,@Valid @RequestBody TaskDTO taskDTO) {
+    public Task updateTask(@PathVariable Long id, @Valid @RequestBody TaskDTO taskDTO) {
         logger.info("Изменение задачи с заголовком: {}", taskDTO.getTitle());
         return service.updateTask(id, taskDTO);
     }
