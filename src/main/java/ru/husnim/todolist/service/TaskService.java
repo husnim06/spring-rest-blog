@@ -54,8 +54,13 @@ public class TaskService {
     }
     
     public List<Task> getTasksByPriority(Priority priority) {
-        logger.debug("Получение задачи с приоритетом из репозитория: {}", priority);
-        return repository.findByPriority(priority);
+        try {
+            logger.debug("Получение задачи с приоритетом из репозитория: {}", priority);
+            return repository.findByPriority(priority);
+        } catch (Exception e) {
+            logger.error("Ошибка при получении задачи с приоритетом {}: {}", priority, e.getMessage());
+            throw e;
+        }
     }
 
     public Task createTask(TaskDTO taskDTO) {
