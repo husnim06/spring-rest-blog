@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import ru.husnim.todolist.dto.TaskDTO;
 import ru.husnim.todolist.model.Task;
+import static ru.husnim.todolist.model.Task.Priority;
 import ru.husnim.todolist.repository.TaskRepository;
 import ru.husnim.todolist.service.TaskService;
 
@@ -30,7 +31,7 @@ public class TaskServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        task = new Task("Test Task", "Description", false);
+        task = new Task("Test Task", "Description", false, Priority.MEDIUM);
         task.setId(1L);
     }
 
@@ -73,7 +74,7 @@ public class TaskServiceTest {
         Task foundTask = service.getTaskByTitle("Test Task");
 
         assertEquals(1L, foundTask.getId());
-        verify(repository, times(1)).findById(1L);
+        verify(repository, times(1)).findByTitle("Test Task");
     }
     
     @Test
@@ -95,20 +96,40 @@ public class TaskServiceTest {
 
         assertEquals(1, completedTasks.size());
         assertEquals("Test Task", completedTasks.get(0).getTitle());
-        verify(repository, times(1)).findById(1L);
+        verify(repository, times(1)).findByCompleted(true);
     }
     
     @Test
     public void testGetTaskByStatusNotFound() {
         when(repository.findByCompleted(false)).thenReturn(Arrays.asList());
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            service.getTasksByStatus(false);
-        });
-
-        assertEquals("Задача не найдена", exception.getMessage());
+        List<Task> notFoundTask = service.getTasksByStatus(false);
+        
+        assertEquals(0, notFoundTask.size());
+        verify(repository, times(1)).findByCompleted(false);
     }
 
+    @Test
+    public void testGetTaskByPriority() {
+        when(repository.findByPriority(Priority.MEDIUM)).thenReturn(Arrays.asList(task));
+
+        List<Task> completedTasks = service.getTasksByPriority(Priority.MEDIUM);
+
+        assertEquals(1, completedTasks.size());
+        assertEquals("Test Task", completedTasks.get(0).getTitle());
+        verify(repository, times(1)).findByPriority(Priority.MEDIUM);
+    }
+    
+    @Test
+    public void testGetTaskByPriorityNotFound() {
+        when(repository.findByPriority(Priority.LOW)).thenReturn(Arrays.asList());
+
+        List<Task> notFoundTask = service.getTasksByPriority(Priority.LOW);
+        
+        assertEquals(0, notFoundTask.size());
+        verify(repository, times(1)).findByPriority(Priority.LOW);
+    }
+    
     @Test
     public void testCreateTask() {
         TaskDTO taskDTO = new TaskDTO();
@@ -131,7 +152,7 @@ public class TaskServiceTest {
         taskDTO.setDescription("Description");
         taskDTO.setCompleted(false);
 
-        when(repository.findByTitle("Existing Task")).thenReturn(Optional.of(new Task("Existing Task", "Some description", false)));
+        when(repository.findByTitle("Existing Task")).thenReturn(Optional.of(new Task("Existing Task", "Some description", false, Priority.MEDIUM)));
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
             service.createTask(taskDTO);
