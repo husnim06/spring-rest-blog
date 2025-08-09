@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.husnim.todolist.dto.TaskDTO;
 import ru.husnim.todolist.model.Task;
+import ru.husnim.todolist.model.Task.Priority;
 import ru.husnim.todolist.service.TaskService;
 
 @RestController
@@ -47,10 +48,16 @@ public class TaskController {
         return service.getTaskByTitle(title);
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter/title")
     public List<Task> getTaskByTitle(@RequestParam boolean completed) {
         logger.info("Получение задачи со статусом: {}", completed);
         return service.getTasksByStatus(completed);
+    }
+
+    @GetMapping("/filter/priority")
+    public List<Task> filterTasksByPriority(@RequestParam Priority priority) {
+        logger.info("Получение задачи с приоритетом: {}", priority);
+        return service.getTasksByPriority(priority);
     }
 
     @PostMapping
