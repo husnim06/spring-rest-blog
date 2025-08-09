@@ -12,7 +12,7 @@
     <artifactId>todolist</artifactId>
     <version>1.0</version>
     <name>todolist</name>
-    <description>Проект, который предоставляет RESTful API для управления задачами. В проекте реализованы модели, репозитории, сервисы и REST контроллеры</description>
+    <description>Java Spring проект, который предоставляет RESTful API для управления задачами. В проекте реализованы модели, репозитории, сервисы и REST контроллеры</description>
     <url/>
     <licenses>
         <license/>
