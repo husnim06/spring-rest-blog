@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.husnim.todolist.model.Task;
+import ru.husnim.todolist.model.Task.Priority;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
@@ -12,5 +13,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     Optional<Task> findByTitle(String title);
 
     List<Task> findByCompleted(boolean completed);
+
+    List<Task> findByPriority(Priority priority);
 
 }

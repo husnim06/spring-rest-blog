@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.husnim.todolist.dto.TaskDTO;
 import ru.husnim.todolist.model.Task;
+import ru.husnim.todolist.model.Task.Priority;
 import ru.husnim.todolist.repository.TaskRepository;
 
 @Service
@@ -51,6 +52,11 @@ public class TaskService {
             throw e;
         }
     }
+    
+    public List<Task> getTasksByPriority(Priority priority) {
+        logger.debug("Получение задачи с приоритетом из репозитория: {}", priority);
+        return repository.findByPriority(priority);
+    }
 
     public Task createTask(TaskDTO taskDTO) {
         logger.debug("Создание новой задачи с заголовком: {}", taskDTO.getTitle());
@@ -61,6 +67,7 @@ public class TaskService {
         task.setTitle(taskDTO.getTitle());
         task.setDescription(taskDTO.getDescription());
         task.setCompleted(taskDTO.getCompleted());
+        task.setPriority(taskDTO.getPriority());
         return repository.save(task);
     }
 
@@ -71,6 +78,7 @@ public class TaskService {
             task.setTitle(taskDTO.getTitle());
             task.setDescription(taskDTO.getDescription());
             task.setCompleted(taskDTO.getCompleted());
+            task.setPriority(taskDTO.getPriority());
             return repository.save(task);
         } catch (Exception e) {
             logger.error("Ошибка при изменении задачи с заголовком {}: {}", taskDTO.getTitle(), e.getMessage());
