@@ -41,12 +41,12 @@ public class TaskService {
             throw e;
         }
     }
-    
+
     public List<Task> getTasksByStatus(boolean completed) {
         try {
             logger.debug("Получение задачи с статусом из репозитория: {}", completed);
             return repository.findByCompleted(completed);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Ошибка при получении задачи со статусом {}: {}", completed, e.getMessage());
             throw e;
         }
@@ -54,6 +54,9 @@ public class TaskService {
 
     public Task createTask(TaskDTO taskDTO) {
         logger.debug("Создание новой задачи с заголовком: {}", taskDTO.getTitle());
+        if (repository.findByTitle(taskDTO.getTitle()).isPresent()) {
+            throw new RuntimeException("Задача с таким заголовком уже существует");
+        }
         Task task = new Task();
         task.setTitle(taskDTO.getTitle());
         task.setDescription(taskDTO.getDescription());
