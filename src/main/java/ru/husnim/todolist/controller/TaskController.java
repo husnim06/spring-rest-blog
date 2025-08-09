@@ -48,8 +48,8 @@ public class TaskController {
         return service.getTaskByTitle(title);
     }
 
-    @GetMapping("/filter/title")
-    public List<Task> getTaskByTitle(@RequestParam boolean completed) {
+    @GetMapping("/filter/status")
+    public List<Task> getTaskByStatus(@RequestParam boolean completed) {
         logger.info("Получение задачи со статусом: {}", completed);
         return service.getTasksByStatus(completed);
     }
