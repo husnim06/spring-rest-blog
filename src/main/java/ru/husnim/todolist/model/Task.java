@@ -2,6 +2,8 @@ package ru.husnim.todolist.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -9,20 +11,32 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 public class Task {
-
+    
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotNull
     @Column(unique = true)
     private String title;
+    
     private String description;
     private boolean completed;
 
-    public Task(String title, String description, boolean completed) {
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
+    
+    public Task(String title, String description, boolean completed, Priority priority) {
         this.title = title;
         this.description = description;
         this.completed = completed;
+        this.priority= priority;
     }
 
     public Task() {
@@ -59,6 +73,14 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+    
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
 }
